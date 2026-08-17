@@ -1,0 +1,190 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-mono);
+  --font-mono: var(--font-mono);
+  --font-pixel: var(--font-pixel);
+  --font-pixel-heading: var(--font-pixel-heading);
+}
+
+@layer utilities {
+  .font-pixel-title {
+    font-family: var(--font-pixel-heading), "Silkscreen", "Press Start 2P", monospace;
+  }
+  .font-pixel {
+    font-family: var(--font-pixel), "VT323", monospace;
+  }
+  .font-mono {
+    font-family: var(--font-mono), "JetBrains Mono", monospace;
+  }
+}
+
+@layer base {
+  :root {
+    --bg-dark: #04070d;
+  }
+
+  body {
+    background-color: var(--bg-dark);
+    color: #f1f5f9;
+    font-family: var(--font-pixel), "VT323", monospace;
+    font-size: 1.125rem;
+    overflow-x: hidden;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+/* ── Cyber Pixel Grid Background ───────────────────────────────── */
+.pixel-grid-bg {
+  background-image:
+    linear-gradient(to right, rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* ── Cyan Cyber Main Glow ──────────────────────────────────────── */
+.bg-glow-cyan {
+  background: radial-gradient(ellipse 650px 450px at 50% 15%, rgba(0, 210, 255, 0.08), transparent 75%);
+}
+
+.bg-glow-\[\#00f0ff\] {
+  background: radial-gradient(ellipse 500px 350px at 50% 80%, rgba(0, 240, 255, 0.05), transparent 75%);
+}
+
+/* ── Retro CRT Scanlines ───────────────────────────────────────── */
+.scanline-overlay {
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.25) 2px,
+    rgba(0, 0, 0, 0.25) 4px
+  );
+  pointer-events: none;
+}
+
+/* ── Cyber Panel Box with Pixel Corner Accents ─────────────────── */
+.cyber-card {
+  position: relative;
+  background: rgba(6, 11, 22, 0.85);
+  border: 1px solid rgba(0, 210, 255, 0.25);
+  box-shadow: 0 0 25px rgba(0, 210, 255, 0.05), inset 0 0 15px rgba(0, 210, 255, 0.02);
+}
+
+/* Corner Pixel Squares */
+.cyber-card::before,
+.cyber-card::after {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #00f0ff;
+  box-shadow: 0 0 8px #00f0ff;
+}
+
+.cyber-card::before {
+  top: -3px;
+  left: -3px;
+}
+
+.cyber-card::after {
+  top: -3px;
+  right: -3px;
+}
+
+.cyber-card-corners-bottom::before,
+.cyber-card-corners-bottom::after {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #00f0ff;
+  box-shadow: 0 0 8px #00f0ff;
+}
+
+.cyber-card-corners-bottom::before {
+  bottom: -3px;
+  left: -3px;
+}
+
+.cyber-card-corners-bottom::after {
+  bottom: -3px;
+  right: -3px;
+}
+
+/* ── Cyber Inputs & Buttons ────────────────────────────────────── */
+.cyber-input {
+  background: rgba(2, 6, 14, 0.9);
+  border: 1.5px solid rgba(0, 210, 255, 0.35);
+  color: #00f0ff;
+  font-family: var(--font-pixel), "VT323", monospace;
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+  transition: all 0.2s ease;
+}
+
+.cyber-input:focus {
+  outline: none;
+  border-color: #00f0ff;
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.35), inset 0 0 10px rgba(0, 240, 255, 0.1);
+}
+
+/* Primary Cyber Action Button */
+.cyber-btn-primary {
+  position: relative;
+  background: linear-gradient(180deg, #00b4ff 0%, #0066ff 100%);
+  border: 1.5px solid #00f0ff;
+  color: #ffffff;
+  font-family: var(--font-pixel-heading), "Silkscreen", monospace;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 20px rgba(0, 180, 255, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  transition: all 0.15s ease;
+}
+
+.cyber-btn-primary:hover:not(:disabled) {
+  background: linear-gradient(180deg, #33c5ff 0%, #1a75ff 100%);
+  box-shadow: 0 0 30px rgba(0, 240, 255, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  transform: translateY(-1px);
+}
+
+.cyber-btn-primary:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+}
+
+.cyber-btn-primary:disabled {
+  background: rgba(15, 23, 42, 0.6);
+  border-color: rgba(51, 65, 85, 0.5);
+  color: #475569;
+  text-shadow: none;
+  box-shadow: none;
+}
+
+/* ── Tile Animations ───────────────────────────────────────────── */
+@keyframes tileFlip {
+  0% { transform: rotateX(0deg) scale(1); }
+  40% { transform: rotateX(90deg) scale(0.95); }
+  60% { transform: rotateX(90deg) scale(0.95); }
+  100% { transform: rotateX(0deg) scale(1); }
+}
+
+.animate-tile-flip {
+  animation: tileFlip 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-slide {
+  animation: fadeSlideIn 0.35s ease-out forwards;
+}
+
+/* ── Scrollbars ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: rgba(2, 6, 14, 0.8); }
+::-webkit-scrollbar-thumb { background: rgba(0, 210, 255, 0.3); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(0, 240, 255, 0.6); }
